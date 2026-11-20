@@ -1,11 +1,19 @@
 # cockpit für Claude Code
 
-Ein Mod für Claude Code. Er zeigt über dem Eingabefeld zwei Zeilen mit allem, was du zu Kosten und Grenzen eines Chats wissen musst:
+Ein Mod für Claude Code, der dir über dem Eingabefeld zeigt, was ein Chat kostet und wie viel Luft du noch hast. Dazu nimmt er dir die drei Handgriffe ab, die am meisten sparen:
+
+1. **Cache warm halten, bis zu 12 Stunden, mit einem Klick.** Meeting, Mittagspause, Feierabend: Dein Chat bleibt im Cache, und die nächste Nachricht kostet deutlich weniger vom Limit, statt den ganzen Verlauf neu zu bezahlen.
+2. **Den Chat verdichten, mit einem Klick.** Compact fasst den Verlauf zusammen, sobald der Kontext eng wird, und zeigt dir danach, wie viel Platz du zurückgewonnen hast.
+3. **Dein Budget auf einen Blick.** Kontext, Fünf-Stunden-Limit und Wochenlimit, jeweils mit der Uhrzeit, zu der es wieder frei wird. Gelb und Rot warnen dich, bevor es knapp wird.
+
+So sieht das aus:
 
 ```
 ▾  Cache (1 h) 56 min  ■■■■■■■■■■■■■■■■■■□□  ·  Hit 100 %  [Warmhalten]
    ☀️ Kontext 22 % / Compact bei 97 %  ·  5h 26 % (frei 22:00)  ·  Woche 30 % (frei Do 12:00)   [Compact]
 ```
+
+## Im Detail
 
 - **Cache:** wie lange der Prompt-Cache noch warm ist, als Minuten und Balken. Ist der Cache warm, kostet die nächste Nachricht deutlich weniger vom Limit. Der Mod erkennt selbst, ob der Cache 5 Minuten oder 1 Stunde hält.
 - **Hit:** wie viel der letzten Anfrage aus dem Cache kam.
