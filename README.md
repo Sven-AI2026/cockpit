@@ -8,10 +8,7 @@ Ein Mod für Claude Code, der dir über dem Eingabefeld zeigt, was ein Chat kost
 
 So sieht das aus:
 
-```
-▾  Cache (1 h) 56 min  ■■■■■■■■■■■■■■■■■■□□  ·  Hit 100 %  [Warmhalten]
-   🟢 Kontext 22 % / Compact bei 97 %  ·  5h 26 % (frei 22:00)  ·  Woche 30 % (frei Do 12:00)   [Compact]
-```
+![cockpit über dem Eingabefeld: Cache-Restzeit mit Balken, Hit-Rate und Knopf Warmhalten; darunter Kontext mit Ampel, 5h- und Wochenlimit und Knopf Compact](docs/cockpit.png)
 
 ## Im Detail
 
