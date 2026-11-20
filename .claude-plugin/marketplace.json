@@ -1,0 +1,5 @@
+{
+  "name": "cockpit-mod",
+  "owner": { "name": "Sven Haferkamp" },
+  "plugins": [{ "name": "cockpit", "source": "./" }]
+}

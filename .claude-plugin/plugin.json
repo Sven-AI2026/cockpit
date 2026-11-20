@@ -1,0 +1,7 @@
+{
+  "name": "cockpit",
+  "version": "0.1.2",
+  "description": "Zwei Zeilen über dem Eingabefeld: Cache mit Restzeit, Hit-Rate und Warmhalten; Kontext, 5h- und Wochenlimit, Compact und /handoff",
+  "author": { "name": "Sven Haferkamp" },
+  "types": "./types/index.d.ts"
+}
