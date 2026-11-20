@@ -87,13 +87,14 @@ export function cacheView(now: number, info: CacheInfo): CacheView {
   }
 }
 
-export type Weather = '☀️' | '🌧️' | '⛈️'
+/** Ampel für den Kontext: Grün bis 50 % der Compact-Schwelle, Orange bis 80 %, darüber Rot. */
+export type Light = '🟢' | '🟠' | '🔴'
 
-export function weather(pct: number | null, thresholdPct: number): Weather {
-  if (pct === null) return '☀️'
-  if (pct <= thresholdPct * 0.5) return '☀️'
-  if (pct <= thresholdPct * 0.8) return '🌧️'
-  return '⛈️'
+export function light(pct: number | null, thresholdPct: number): Light {
+  if (pct === null) return '🟢'
+  if (pct <= thresholdPct * 0.5) return '🟢'
+  if (pct <= thresholdPct * 0.8) return '🟠'
+  return '🔴'
 }
 
 /** Teilt an Absätzen, dann an Zeilen, zuletzt hart, damit kein Stück über `max` liegt. */

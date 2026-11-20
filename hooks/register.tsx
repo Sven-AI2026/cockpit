@@ -2,7 +2,7 @@ import { atom, read, update } from 'claude-code'
 import type { EngineInterface, Register, RenderChildren, SessionCompactResult, SessionRateLimit, Timer } from 'claude-code'
 
 import type { CacheInfo, CtxInfo } from '../types'
-import { BOXES, FALLBACK_THRESHOLD, cacheView, fmtTokens, parseTranscript, splitText, weather } from './logic'
+import { BOXES, FALLBACK_THRESHOLD, cacheView, fmtTokens, parseTranscript, splitText, light } from './logic'
 
 // ── Zustand ────────────────────────────────────────────────────────────────
 const cache = atom({ plugin: 'cockpit', key: 'cache' } as const, null)
@@ -335,8 +335,9 @@ export const register: Register = on => {
     const restText = view === null ? '–' : view.isExpired ? 'kalt' : `${view.remainingMin} min`
     const thresholdPct = c?.thresholdPct ?? FALLBACK_THRESHOLD
     const pct = c?.pct ?? null
-    const sky = weather(pct, thresholdPct)
-    const isStorm = sky === '⛈️'
+    const lamp = light(pct, thresholdPct)
+    const isRed = lamp === '🔴'
+    const ctxColor = isRed ? 'error' : lamp === '🟠' ? 'warning' : undefined
     const pctText = pct === null ? '–' : `${Math.round(pct)} %`
     const thrText = `${c && !c.isThresholdRead ? '~' : ''}${thresholdPct} %`
     const isWarm = warmEnd != null && warmEnd > now
@@ -374,7 +375,7 @@ export const register: Register = on => {
             <Text color={cacheColor}>{restText}</Text>
             {isWarm ? <Text color="success"> warm</Text> : null}
             {dot}
-            <Text color={isStorm ? 'error' : undefined}>{`${sky} ${pctText}`}</Text>
+            <Text color={ctxColor}>{`${lamp} ${pctText}`}</Text>
             {dot}
             {limitSpan('5h', fiveHour, false)}
             {dot}
@@ -428,7 +429,7 @@ export const register: Register = on => {
         <Button
           key="compact"
           label="Compact"
-          variant={isStorm ? 'primary' : 'secondary'}
+          variant={isRed ? 'primary' : 'secondary'}
           onPress={() => compactNow($, surface, isWorking)}
         />
       </Box>
@@ -459,9 +460,9 @@ export const register: Register = on => {
 
     const line2 = (
       <Text wrap="truncate">
-        <Text>{`${sky} `}</Text>
+        <Text>{`${lamp} `}</Text>
         <Text dimColor>Kontext </Text>
-        <Text color={isStorm ? 'error' : undefined} weight={isStorm ? 'bold' : undefined}>{pctText}</Text>
+        <Text color={ctxColor} weight={isRed ? 'bold' : undefined}>{pctText}</Text>
         <Text dimColor>{` / Compact bei ${thrText}`}</Text>
         {dot}
         {limitSpan('5h', fiveHour, true)}
