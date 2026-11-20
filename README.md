@@ -31,7 +31,8 @@ Die Frage „Add marketplace?“ mit `y` beantworten, dann den Bereich „user�
 Aus der Shell:
 
 ```bash
-claude plugin install cockpit --marketplace Sven-AI2026/cockpit
+claude plugin marketplace add Sven-AI2026/cockpit
+claude plugin install cockpit@cockpit-mod --scope user
 ```
 
 In der Desktop-App: auf + neben dem Eingabefeld klicken, dann Plugins, „Add marketplace“ mit `Sven-AI2026/cockpit`, dann „Add plugin“.
